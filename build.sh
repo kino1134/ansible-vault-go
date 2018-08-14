@@ -5,4 +5,6 @@
 go build -o bin/vault_go
 
 # Window x64
-GOOS=windows GOARCH=amd64 go build -o bin/vault_go.exe
+GOOS=windows GOARCH=amd64 go build -o bin/vault_go.exe -ldflags '-s -w'
+# Window x32
+GOOS=windows GOARCH=386 go build -o bin/vault_go32.exe -ldflags '-s -w'
