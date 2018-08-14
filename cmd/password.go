@@ -1,7 +1,6 @@
 package vault_go
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -25,22 +24,7 @@ func GetPassword(opts *cmdOpts) (string, error) {
 	if opts.PasswordFile != "" {
 		return readPassword(opts.PasswordFile)
 	} else {
-		password, err := inputPassword("パスワード: ")
-		if err != nil {
-			return "", err
-		}
-
-		if opts.Sub == "encrypt" {
-			confirm, err := inputPassword("パスワード(確認): ")
-			if err != nil {
-				return "", err
-			}
-			if confirm != password {
-				return "", errors.New("パスワードが一致しません。")
-			}
-		}
-
-		return password, nil
+		return inputPassword("パスワード: ")
 	}
 }
 
